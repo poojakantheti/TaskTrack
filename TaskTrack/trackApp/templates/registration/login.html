@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Login Here{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #D8F7D1;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 250px;
+        }
+        .form-container {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .btn-login {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+        }
+        .btn-login:hover {
+            background-color: #218838;
+        }
+        .register-link {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="form-container">
+            <img src="{% static '/images/img-crop.png' %}" alt="Logo" style="width: 150px; margin-left: 167px;">
+                <h2>Login</h2>
+                <form method="post" class="form-group">
+                    {% csrf_token %}
+                    {{ form }}
+                    <br>
+                    <button type="submit" class="btn btn-login btn-block">Login</button>
+                    <p class="register-link">Don't have an account? Create one <a href="/register">here</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+{% endblock %}

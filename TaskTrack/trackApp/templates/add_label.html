@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Label</title>
+    <style>
+        .container3 {
+            width: 500px;
+            background-color: #ffffff; /* White sidebar */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Drop shadow */
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 400px;
+            height: 75vh;
+        }
+
+         form {
+            margin-top: 20px;
+        }
+        /* Style for labels */
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        /* Style for text inputs */
+        input[type="text"], select {
+            width: calc(100% - 22px); /* Adjust width for consistent spacing */
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            display: inline-block; /* Display inline for consistent alignment */
+        }
+        /* Style for submit button */
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-block; /* Display inline for consistent alignment */
+        }
+        /* Style for submit button on hover */
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+  <div class="container3">
+        <h2>Add Label</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="id_label_name">Label Name:</label><br>
+            <input type="text" id="label_name" name="label_name" required><br>
+
+            <label for="id_label_colour">Label Colour:</label><br>
+            <select id="label_colour" name="label_colour" required>
+                <option value="#E91E63" style="background-color: #E91E63;">Deep Pink</option>
+                <option value="#9C27B0" style="background-color: #9C27B0;">Purple</option>
+                <option value="#3F51B5" style="background-color: #3F51B5;">Indigo</option>
+                <option value="#03A9F4" style="background-color: #03A9F4;">Light Blue</option>
+                <option value="#00BCD4" style="background-color: #00BCD4;">Cyan</option>
+                <option value="#4CAF50" style="background-color: #4CAF50;">Green</option>
+                <option value="#CDDC39" style="background-color: #CDDC39;">Lime</option>
+                <option value="#FFEB3B" style="background-color: #FFEB3B;">Yellow</option>
+                <option value="#FF9800" style="background-color: #FF9800;">Orange</option>
+                <option value="#795548" style="background-color: #795548;">Brown</option>
+            </select><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+        {{ Message }}
+  </div>
+</body>
+</html>
+{% endblock %}

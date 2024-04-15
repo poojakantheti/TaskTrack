@@ -1,0 +1,3 @@
+Django
+icalendar
+django-crispy-forms

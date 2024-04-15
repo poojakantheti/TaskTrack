@@ -1,0 +1,76 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif; /* Assuming the main site uses Arial */
+    }
+    
+    .container2 {
+        width: 500px;
+        background-color: #ffffff; /* Light green background, matching the main area in the image */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft drop shadow */
+        position: fixed;
+        top: 20%;
+        transform: translateY(-50%);
+        left: 300px;
+        height: auto; /* Adjusted for content size */
+    }
+
+    h3 {
+        color: #333; /* Header color, assuming a dark grey */
+        margin-bottom: 20px; /* Space below the header */
+    }
+
+    p {
+        color: #333; /* Text color, assuming a dark grey for better readability */
+        margin-bottom: 20px; /* Space below the paragraph */
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    button {
+        background-color: #f44336; /* Red button for delete action */
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #d32f2f; /* Darker red on hover */
+    }
+
+    button:active {
+        background-color: #b71c1c; /* Even darker red when pressed */
+    }
+
+    /* Confirmation dialog box styling, if necessary */
+    .confirm-dialog {
+        color: #333;
+    }
+</style>
+
+<script>
+function confirmDelete() {
+    return confirm('Are you sure you want to delete your account? This action cannot be undone.');
+}
+</script>
+
+<div class="container2">
+    <h3>Delete Account</h3>
+    <p>Warning: Deleting your account is irreversible. All your data will be permanently removed.</p>
+    <form action="{% url 'delete_account' %}" method="post" onsubmit="return confirmDelete();">
+        {% csrf_token %}
+        <button type="submit">Delete Account</button>
+    </form>
+</div>
+
+{% endblock %}

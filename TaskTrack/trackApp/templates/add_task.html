@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Task</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* Adjust to match your theme's font */
+            color: #333; /* Standard text color */
+            background-color: #f0f0f0; /* Match the theme's background */
+        }
+        
+        .container3 {
+            width: 350px;
+            background-color: #ffffff; /* White sidebar */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Drop shadow */
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 350px;
+            height: 75vh;
+        }
+
+        h2 {
+            color: #5a5a5a; /* Dark grey for headings */
+            text-align: center; /* Center aligning the header */
+            margin-bottom: 20px; /* Spacing after the header */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px; /* Spacing before each input */
+        }
+
+        input[type=text],
+        input[type=datetime-local],
+        select,
+        textarea {
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding for inputs */
+            padding-right: 2px;
+            margin-bottom: 15px; /* Spacing after each input */
+            border: 1px solid #ddd; /* Light grey border */
+            border-radius: 5px; /* Slightly rounded borders for inputs */
+        }
+
+        input[type=submit] {
+            background-color: #5cb85c; /* Green background */
+            color: white; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer; /* Pointer on hover */
+        }
+
+        input[type=submit]:hover {
+            background-color: #4cae4c; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+  <div class="container3">
+        <h2>Add Task</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="task_name">Task Name*:</label>
+            <input type="text" id="task_name" name="task_name" required>
+            
+            <label for="task_description">Task Description:</label>
+            <textarea id="task_description" name="task_description"></textarea>
+            
+            <label for="task_label">Task Label*:</label>
+            <select id="task_label" name="task_label" required>
+                {% for label in labels %}
+                <option value="{{ label.id }}">{{ label.label_name }}</option>
+                {% endfor %}
+            </select>
+            
+            <label for="deadline">Deadline*:</label>
+            <input type="datetime-local" id="deadline" name="task_deadline" required>
+            
+            <input type="submit" value="Submit">
+            {{ Message }}
+        </form>
+  </div>
+</body>
+</html>
+{% endblock %}

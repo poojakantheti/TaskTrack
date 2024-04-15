@@ -1,0 +1,64 @@
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif; /* This should be the same font as your theme's */
+        background-color: #D8F7D1; /* Background color to match the theme */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .form-group {
+        background-color: #ffffff; /* Match the task form color */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Consistent with the task form */
+        width: fit-content;
+        max-width: 100%; /* To make sure it is responsive */
+    }
+
+    .btn-success {
+        background-color: #5cb85c; /* Green button to match the task form */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        display: block; /* To take the full width of the form */
+        margin: 10px 0; /* Spacing on top and bottom */
+    }
+
+    .btn-success:hover {
+        background-color: #4cae4c; /* Darker green on hover */
+    }
+
+    /* Style for form inputs, adjust as necessary */
+    input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px; /* Consistent spacing */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    label {
+        display: block;
+        margin-bottom: .5rem;
+        color: #333;
+    }
+
+    /* Add other styles here for customizing the form fields, labels, etc. */
+
+</style>
+<form method="POST" class="form-group">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-success">Register</button>
+</form>
+{% endblock %}

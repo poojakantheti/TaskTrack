@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labels</title>
+    <style>
+        .container4 {
+            width: 450px;
+            background-color: #ffffff; /* White sidebar */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Drop shadow */
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 350px;
+            height: 75vh;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            display: inline-flex;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .checkbox {
+            margin-right: 10px;
+        }
+        .circle {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .circle-red {
+            background-color: blue;
+        }
+        .circle-yellow {
+            background-color: green;
+        }
+        .circle-green {
+            background-color: yellow;
+        }
+        .task-name {
+            margin-top: 8px;
+            flex: 1;
+        }
+        .save-button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            float: bottom;
+        }
+        .save-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .save-button:hover {
+            background-color: #0056b3;
+        }
+
+        .edit-form {
+            width: 750px;
+            background-color: #ffffff; /* White sidebar */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Drop shadow */
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 1000px;
+            height: 75vh;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .close-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .action-links {
+            display: inline-flex; /* Aligns the links in a row */
+            margin-left: 10px; /* Spacing from the label name */
+        }
+
+        .action-link {
+            text-decoration: none; /* Removes underline from links */
+            margin-left: 8px; /* Spacing between links */
+            padding: 4px 8px; /* Padding for clickable area */
+            border-radius: 4px; /* Rounded corners */
+            font-size: 0.8em; /* Smaller text */
+            font-weight: bold; /* Bold text for importance */
+            line-height: 2; /* Adjust line-height to ensure buttons are aligned */
+        }
+
+        .delete-link {
+            background-color: #ff4d4d; /* Red background for delete */
+            color: white; /* White text */
+            
+        }
+
+        .edit-link {
+            background-color: #4dafff; /* Blue background for edit */
+            color: white; /* White text */
+        }
+
+        .delete-link:hover,
+        .edit-link:hover {
+            opacity: 0.8; /* Slight transparency on hover */
+        }
+
+        .task-name {
+            font-family: 'Arial', sans-serif; /* Use a web-safe font or import a custom one */
+            font-size: 1.1em; /* Adjust the font size as needed */
+            color: #333; /* Dark gray for better readability */
+            padding: 5px 10px; /* Add some padding around the text */
+            margin: 0 5px; /* Space on the left and right */
+            background-color: #ffffff; /* Light background color for the label */
+            border-radius: 4px; /* Rounded corners for the label background */
+            flex-grow: 1; /* Ensures the name takes up available space */
+            margin-right: 10px; /* Space before the action links */
+            display: block; /* Makes the span behave like a block element for background styling */
+        }
+
+        /* Styles for the circle indicating label color */
+        .circle {
+            width: 20px; /* Smaller circle size */
+            height: 20px; /* Smaller circle size */
+            border-radius: 50%; /* Perfect circle */
+            margin-right: 10px; /* Space between the circle and the label name */
+        }
+
+        /* You can also style the <a> element that wraps the label name */
+        a.task-name-link {
+            text-decoration: none; /* Removes underline */
+            color: inherit; /* Ensures the link uses the current text color */
+            display: flex; /* Aligns the circle and the label name */
+            align-items: center; /* Centers them vertically */
+        }
+
+        /* Hover effect for the link */
+        a.task-name-link:hover .task-name {
+            background-color: #d0e8d0; /* Slightly darker background on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container4">
+        <h2>Labels</h2>
+        <hr style="height:2px;border-width:0;color:gray;background-color: #d3d3d3">
+        <ul>
+            {% for label in labels %}
+            <li>
+                <a href="/{{ label.id }}/kanban/" class="task-name-link">
+                    <div class="circle" style="background-color: {{ label.label_colour }};"></div>
+                    <span class="task-name">{{ label.label_name }}</span>
+                </a>
+                <!-- Action Links -->
+                <div class="action-links">
+                    <a href="/delete_label/{{ label.id }}" class="action-link delete-link">Delete</a>
+                    <a href="/edit_label/{{ label.id }}" class="action-link edit-link">Edit</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+<script>
+    // JavaScript function to show task description
+    function showDescription(description, title) {
+        // Get the description element
+        var descriptionElement = document.getElementById('description');
+        var titleElement = document.getElementById('title');
+
+        console.log(titleElement);
+        // Set the task description
+        descriptionElement.textContent = description;
+        titleElement.textContent = title;
+    }
+</script>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Syllabus Parser</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* This should be the same font as your theme's */
+            background-color: #f0f0f0; /* Background color to match the theme */
+        }
+
+        .form-container {
+            margin-left: 300px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+            height: 600px; 
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px; /* Consistent spacing */
+        }
+
+        input[type=text],
+        select,
+        input[type=file],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px; /* Consistent spacing */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #5cb85c; /* Green button to match the task form */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4cae4c; /* Darker green on hover */
+        }
+
+        .custom-file-input {
+            /* Adjust the styles for your file input to match the theme */
+            opacity: 0; /* Hide the default file input */
+            position: relative;
+            z-index: 1;
+        }
+
+        .custom-file-input + label {
+            background-color: #5cb85c; /* Green background to match your buttons */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .custom-file-input:hover + label {
+            background-color: #4cae4c; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="label_name">Label Name:</label>
+            <input type="text" id="label_name" name="label_name" placeholder="{{name}}">
+
+            <label for="label_colour">Label Colour:</label>
+            <select id="label_colour" name="label_colour">
+                <!-- Color options -->
+                <option value="#E91E63" style="background-color: #E91E63;">Deep Pink</option>
+                <option value="#9C27B0" style="background-color: #9C27B0;">Purple</option>
+                <option value="#3F51B5" style="background-color: #3F51B5;">Indigo</option>
+                <option value="#03A9F4" style="background-color: #03A9F4;">Light Blue</option>
+                <option value="#00BCD4" style="background-color: #00BCD4;">Cyan</option>
+                <option value="#4CAF50" style="background-color: #4CAF50;">Green</option>
+                <option value="#CDDC39" style="background-color: #CDDC39;">Lime</option>
+                <option value="#FFEB3B" style="background-color: #FFEB3B;">Yellow</option>
+                <option value="#FF9800" style="background-color: #FF9800;">Orange</option>
+                <option value="#795548" style="background-color: #795548;">Brown</option>
+            </select>
+
+            <input type="file" id="file" name="syllabus_file" class="custom-file-input">
+            <label for="file">Choose File</label> <!-- Style this label as the button -->
+
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}
