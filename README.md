@@ -8,11 +8,11 @@ Before you begin, ensure you have Python installed on your computer. If not, you
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/nxirvProjects/TaskTrackDjango.git
+    git clone https://github.com/nxirvProjects/TaskTrack.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd TaskTrackDjango
+    cd TaskTrack
     ```
 3. Create a virtual environment (optional but recommended):
     ```bash
