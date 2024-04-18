@@ -8,7 +8,7 @@ Before you begin, ensure you have Python installed on your computer. If not, you
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/vanesaviProjects/TaskTrack.git
+    git clone https://github.com/vanesavi/TaskTrack.git
     ```
 2. Navigate to the project directory:
     ```bash
