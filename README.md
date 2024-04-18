@@ -72,6 +72,9 @@ python manage.py runserver
 - **Kashvi Asokan**
   - [LinkedIn](https://www.linkedin.com/in/kashvi-asokan/)
   - [GitHub](https://github.com/eisedial)
+- **Kevin Melo**
+  - [LinkedIn](https://www.linkedin.com/in/kevin-s-melo/)
+  - [GitHub](https://github.com/Kevin-S26)
 
 - **Victor Faltaous**
 
@@ -79,4 +82,4 @@ python manage.py runserver
 
 - **Sravanthi Nallan**
 
-- **Kevin Melo**
+
