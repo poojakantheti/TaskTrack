@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
+from numpy import convolve
 from .models import Task, Label
 from .forms import AddTaskForm, AddLabelForm, EditTaskForm, RegisterForm, EditLabelForm, UploadSyllabusForm 
 from django.contrib.auth.decorators import login_required
@@ -329,7 +330,8 @@ def change_password(request):
 def format_and_create_tasks(file_tasks, new_label, username):
     formatted_tasks = []
     for task in file_tasks:
-        original_date = datetime.strptime(task[1], "%m/%d/%y")
+        print(task)
+        original_date = datetime.datetime.strptime(task[1], "%m/%d/%y")
         formatted_date = original_date.strftime("%Y-%m-%d %H:%M:%S")
         formatted_tasks.append([task[0], formatted_date])
 
@@ -353,6 +355,7 @@ def syllabus_parser(response):
         label_colour = form['label_colour'].value()
         file = response.FILES['syllabus_file']
 
+
         new_label = Label(label_name=label_name_new,
                           label_colour=label_colour,
                           user=response.user.username)
@@ -373,6 +376,7 @@ def syllabus_parser(response):
                          ["Exam 1", "02/27/24"], ["Homework 2", "03/01/24"], ["Quiz 3", "03/4/24"],
                          ["Homework 3", "03/22/24"], ["Exam 2",  "04/04/24"], ["Quiz 4",  "04/12/24"],
                          ["Homework 4", "04/14/24"], ["Homework 5", "04/12/24"], ["Exam 3","05/06/24"]]
+
 
         if file.name == file_1_name:
             format_and_create_tasks(file_1_tasks, new_label, response.user.username)
