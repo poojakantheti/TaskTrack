@@ -68,18 +68,25 @@ python manage.py runserver
 - **Sree Bommisetty**
   - [LinkedIn](https://www.linkedin.com/in/sreebommisetty/)
   - [GitHub](https://github.com/person3)
+ 
+- **Pooja Kantheti**
+  - [LinkedIn](https://www.linkedin.com/in/pooja-kantheti/)
+  - [GitHub](https://github.com/poojakantheti)
 
 - **Kashvi Asokan**
   - [LinkedIn](https://www.linkedin.com/in/kashvi-asokan/)
   - [GitHub](https://github.com/eisedial)
+    
 - **Kevin Melo**
   - [LinkedIn](https://www.linkedin.com/in/kevin-s-melo/)
   - [GitHub](https://github.com/Kevin-S26)
+ 
+- **Sravanthi Nallan**
+  - [GitHub](https://github.com/sravanthinallan)
 
 - **Victor Faltaous**
+  - [LinkedIn](https://www.linkedin.com/in/victor-faltaous-946bb4290/)
+  
 
-- **Pooja Kantheti**
-
-- **Sravanthi Nallan**
 
 
